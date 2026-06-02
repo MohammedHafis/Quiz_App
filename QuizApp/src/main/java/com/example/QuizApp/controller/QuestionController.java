@@ -31,4 +31,9 @@ public class QuestionController {
     public ResponseEntity<String> addQuestions(@RequestBody Question question){
         return questionService.addQuestions(question);
     }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<String> deleteQuestion(@PathVariable Long id){
+        return questionService.deleteQuestion(id);
+    }
 }

@@ -39,4 +39,18 @@ public class QuestionService {
         }
     return new ResponseEntity<>("Question Creation Failed", HttpStatus.BAD_REQUEST);
     }
+
+    public ResponseEntity<String> deleteQuestion(Long id) {
+        try {
+            if (questionDao.existsById(id)) {
+                questionDao.deleteById(id);
+                return new ResponseEntity<>("Question deleted successfully", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Question not found", HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Failed to delete question", HttpStatus.BAD_REQUEST);
+        }
+    }
 }
